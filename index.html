@@ -403,7 +403,7 @@ async function loadRates(){
 currencySelect.addEventListener('change',()=>{try{localStorage.setItem('chromagic_currency',currencySelect.value)}catch(_){}renderLocalPrices();track('currency_changed',{currency:currencySelect.value})});loadRates();
 
 // ---------- Analytics: add your GA4 measurement ID to activate ----------
-const GA4_MEASUREMENT_ID='G-XXXXXXXXXX';
+const GA4_MEASUREMENT_ID='G-1WHZ4FDZYD';
 function track(eventName,params={}){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:eventName,...params});if(typeof window.gtag==='function')window.gtag('event',eventName,params)}
 if(/^G-[A-Z0-9]+$/.test(GA4_MEASUREMENT_ID)&&GA4_MEASUREMENT_ID!=='G-XXXXXXXXXX'){
  const gaScript=document.createElement('script');gaScript.async=true;gaScript.src='https://www.googletagmanager.com/gtag/js?id='+GA4_MEASUREMENT_ID;document.head.appendChild(gaScript);
