@@ -441,7 +441,7 @@ f.addEventListener('submit',async e=>{
  sb.disabled=true;sb.textContent='Sending…';
  const d=Object.fromEntries(new FormData(f));d.turnstileToken=turnstileToken;d.pageUrl=location.href;d.currencyDisplayed=currencySelect.value;d.rateDate=fxDate;
  try{
-  const r=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(d)});const j=await r.json();if(!r.ok||!j.success)throw new Error(j.message||'Submission failed');
+  const r=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(d)});const j=await r.json();if(!r.ok||!j.success)throw new Error(j.message||'Submission failed');
   try{localStorage.setItem('cd_last',Date.now())}catch(_){}track('generate_lead',{form_name:'website_enquiry',selected_plan:$('#selected-plan').value||'Not selected'});f.hidden=true;const ok=$('#ok');ok.hidden=false;ok.focus();
  }catch(err){msg.textContent=err.message||'Your message didn’t send. Please try again or email shanmugamsullia@gmail.com.';sb.disabled=false;sb.textContent='Send Request →'}
 });
