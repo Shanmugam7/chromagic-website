@@ -352,7 +352,7 @@ footer h4{font:600 10.5px var(--f2);letter-spacing:.14em;text-transform:uppercas
    <div class="fld"><label for="em">Work email *</label><input id="em" name="email" type="email" autocomplete="email" required><span class="err" id="e-em"></span></div>
    <div class="fld"><label for="w">Website / LinkedIn</label><input id="w" name="Website / LinkedIn" inputmode="url"></div>
    <div class="fld w"><label for="r">What do you need help with?</label><select id="r" name="Requirement"><option value="">Select one</option><option>Creative Design</option><option>Video</option><option>Motion</option><option>3D</option><option>Content</option><option>Brand / Campaign</option><option>Ongoing Creative Support</option><option>Other</option></select></div>
-   <div class="turnstile-slot" id="turnstile-slot"><div id="turnstile-widget"></div><p class="turnstile-help" id="turnstile-help">Spam protection activates after the Cloudflare Turnstile site key is configured.</p></div>
+   <div class="turnstile-slot" id="turnstile-slot"><div class="h-captcha" data-captcha="true"></div><p class="turnstile-help" id="turnstile-help">Spam protection activates after the Cloudflare Turnstile site key is configured.</p></div>
    <div class="fld w"><label for="m">Message *</label><textarea id="m" name="Message" required></textarea><span class="err" id="e-m"></span></div>
    <div class="fld w"><button class="btn" id="sb" type="submit">Send Request →</button></div>
    <p id="msg" role="alert"></p>
@@ -426,11 +426,6 @@ document.querySelectorAll('.plan-cta').forEach(button=>button.addEventListener('
 const f=$('#f'),msg=$('#msg'),sb=$('#sb');
 const re=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const setE=(id,t)=>{$('#e-'+id).textContent=t;return !t};
-const TURNSTILE_SITE_KEY='0x4AAAAAAFX0kpEj2uF-6xm4';
-let turnstileToken='';
-if(TURNSTILE_SITE_KEY!=='YOUR_CLOUDFLARE_TURNSTILE_SITE_KEY'){
- const ts=document.createElement('script');ts.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';ts.async=true;ts.defer=true;ts.onload=()=>{if(window.turnstile){window.turnstile.render('#turnstile-widget',{sitekey:TURNSTILE_SITE_KEY,callback:token=>{turnstileToken=token;$('#turnstile-help').textContent='Spam protection is active.'},'expired-callback':()=>{turnstileToken=''},'error-callback':()=>{turnstileToken=''}});$('#turnstile-help').textContent='Complete the security check if prompted.'}};document.head.appendChild(ts);
-}
 f.addEventListener('submit',async e=>{
  e.preventDefault();msg.textContent='';
  const v=[setE('n',f.Name.value.trim()?'':'Enter your name.'),setE('em',re.test(f.email.value.trim())?'':'Enter a valid work email.'),setE('m',f.Message.value.trim().length>=10?'':'Tell us a little more (10+ characters).')];
@@ -439,7 +434,7 @@ f.addEventListener('submit',async e=>{
  let last=0;try{last=+localStorage.getItem('cd_last')||0}catch(_){}
  if(Date.now()-last<30000){msg.textContent='Please wait a few seconds before sending another request.';return}
  sb.disabled=true;sb.textContent='Sending…';
- const d=Object.fromEntries(new FormData(f));d.turnstileToken=turnstileToken;d.pageUrl=location.href;d.currencyDisplayed=currencySelect.value;d.rateDate=fxDate;
+const d=Object.fromEntries(new FormData(f));d.pageUrl=location.href;d.currencyDisplayed=currencySelect.value;d.rateDate=fxDate;
  try{
   const r=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(d)});const j=await r.json();if(!r.ok||!j.success)throw new Error(j.message||'Submission failed');
   try{localStorage.setItem('cd_last',Date.now())}catch(_){}track('generate_lead',{form_name:'website_enquiry',selected_plan:$('#selected-plan').value||'Not selected'});f.hidden=true;const ok=$('#ok');ok.hidden=false;ok.focus();
@@ -447,5 +442,6 @@ f.addEventListener('submit',async e=>{
 });
 })();
 </script>
+ <script src="https://web3forms.com/client/script.js" async defer></script>
 </body>
 </html>
