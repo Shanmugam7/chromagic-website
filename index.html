@@ -194,10 +194,701 @@ footer h4{font:600 10.5px var(--f2);letter-spacing:.14em;text-transform:uppercas
  .eq div{padding:12px 16px}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
+
+
+/* Chromagic visual refresh — presentation-only; existing integrations preserved */
+:root { --ac: #c9e83f; }
+html { scroll-behavior: smooth; }
+body { text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+::selection { background: var(--ac); color: var(--ink); }
+.wrap { width: min(100% - 48px, 1440px); }
+section { padding-top: clamp(64px, 8vw, 112px); padding-bottom: clamp(64px, 8vw, 112px); }
+.head { margin-bottom: clamp(28px, 4vw, 48px); }
+h1, h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+.btn { transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.10); }
+.work { gap: clamp(14px, 1.6vw, 24px); }
+.wk { min-width: 0; }
+.wk > h3 { margin-top: 7px; letter-spacing: -.035em; }
+.wk > p { max-width: 42ch; color: var(--muted, #5f5b53); }
+.art { border-radius: 2px; background-color: #e5e0d5; }
+.art.a1::before { display: none; }
+.art.problem-art { isolation: isolate; }
+.art.problem-art > img { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.art.problem-art::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgba(13,14,12,.72) 0%, rgba(13,14,12,.28) 62%, rgba(13,14,12,.04) 100%); pointer-events: none; }
+.art.a2::after { background: linear-gradient(115deg, rgba(18,18,16,.10), rgba(18,18,16,.82)); }
+.art.a3::after { background: linear-gradient(0deg, rgba(18,18,16,.72), rgba(18,18,16,.03) 90%); }
+.problem-copy { position: absolute; left: clamp(16px, 2vw, 26px); bottom: clamp(18px, 2.2vw, 28px); z-index: 2; width: calc(100% - 40px); max-width: 340px; color: #fff; }
+.problem-copy > span { display: inline-block; margin-bottom: 12px; font-size: 10px; line-height: 1.2; font-weight: 800; letter-spacing: .17em; }
+.problem-copy h3 { margin: 0 0 10px; color: #fff; font-size: clamp(32px, 3.2vw, 56px); line-height: .9; letter-spacing: -.065em; }
+.problem-copy p { margin: 0; max-width: 28ch; color: rgba(255,255,255,.9); font-size: clamp(11px, 1vw, 14px); line-height: 1.45; }
+.art .tag { z-index: 3; }
+.integration-panel, .plan, form { border-radius: 2px; }
+input, textarea, select { border-radius: 2px; }
+@media (max-width: 640px) {
+ .wrap { width: min(100% - 32px, 1440px); }
+ .problem-copy h3 { font-size: clamp(36px, 12vw, 54px); }
+ .work { gap: 28px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* CHROMAGIC — kinetic dark-mode refresh */
+:root{
+ --bg:#090a10;--ink:#f5f5f2;--g1:#a2a4b3;--g2:rgba(255,255,255,.13);--ac:#c8ff3d;
+ --f1:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;--f2:'Instrument Sans','Helvetica Neue',Arial,sans-serif;
+ color-scheme:dark;
+}
+html{background:var(--bg);scroll-behavior:smooth}
+body{background:radial-gradient(ellipse at 82% 6%,rgba(124,58,237,.14),transparent 32%),radial-gradient(ellipse at 4% 38%,rgba(200,255,61,.07),transparent 28%),var(--bg);color:var(--ink);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.12;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(to bottom,black,transparent 82%)}
+::selection{background:var(--ac);color:#090a10}
+header{background:rgba(9,10,16,.78);border-bottom:1px solid var(--g2);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+nav ul.open{background:#0d0e16;border-color:var(--g2)}
+section{border-top:1px solid var(--g2);position:relative}
+.eb{color:#b9bbca}.eb:before{background:var(--ac);box-shadow:0 0 18px rgba(200,255,61,.65);border:0}
+h1,h2,h3,h4{color:#f8f8f6}
+h1{letter-spacing:-.065em}
+h2{letter-spacing:-.055em}
+p{color:#b5b7c5}
+.lab{color:#a8aaba}
+.btn{border:1px solid var(--ac);border-radius:999px;background:var(--ac);color:#0b0c10;padding:13px 21px;box-shadow:0 0 0 rgba(200,255,61,0);transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s,background .28s,color .28s}
+.btn:hover{background:#d9ff7a;color:#090a10;transform:translateY(-3px) scale(1.015);box-shadow:0 10px 34px rgba(200,255,61,.18)}
+.btn.o{background:rgba(255,255,255,.035);color:#f5f5f2;border-color:rgba(255,255,255,.25)}
+.btn.o:hover{background:rgba(255,255,255,.1);border-color:var(--ac);color:var(--ac)}
+.tl{border-color:var(--ac);color:#f5f5f2}
+/* Hero / high-energy atmosphere */
+.hero{overflow:hidden}
+.hero h1 em,.hero h1 .accent,.accent{font-style:normal;color:var(--ac)}
+.hero .two>div:first-child{position:relative;z-index:1}
+.hero .hv{border:1px solid rgba(255,255,255,.18);border-radius:22px;overflow:hidden;background:linear-gradient(135deg,rgba(124,58,237,.28),rgba(200,255,61,.08) 55%,rgba(255,255,255,.025));box-shadow:0 25px 90px rgba(0,0,0,.34)}
+.hv>*,.mono,.art{transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .3s}
+.hv:hover{border-color:rgba(200,255,61,.55);box-shadow:0 28px 100px rgba(124,58,237,.16)}
+/* Service/process/pricing surfaces */
+.col,.steps li,.plan,.integration-panel,.creds>*,.cs,.fg>div,.calendly-wrap{border-color:var(--g2)!important}
+.col,.plan,.integration-panel{background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border-radius:18px!important}
+.col:hover,.plan:hover{transform:translateY(-5px);border-color:rgba(200,255,61,.48)!important;box-shadow:0 22px 60px rgba(0,0,0,.22)}
+.plan{transition:transform .3s,border-color .3s,box-shadow .3s}
+.plan.featured{background:linear-gradient(145deg,rgba(200,255,61,.11),rgba(124,58,237,.12));border:1px solid rgba(200,255,61,.5)!important}
+.plan .price,.plan strong{color:#f8f8f6}
+.plan .btn{margin-top:10px}
+.steps li{border-color:var(--g2)!important}
+.steps .lab{color:var(--ac)}
+.art{border:1px solid rgba(255,255,255,.18);border-radius:16px;background:#151622;overflow:hidden;box-shadow:0 12px 35px rgba(0,0,0,.16)}
+.art:hover{transform:translateY(-5px);border-color:rgba(200,255,61,.6);box-shadow:0 24px 55px rgba(0,0,0,.32)}
+.art .tag{background:rgba(9,10,16,.74);color:#f5f5f2;border:1px solid rgba(255,255,255,.38);border-radius:999px;backdrop-filter:blur(10px)}
+.art.a1::after{background:linear-gradient(90deg,rgba(4,5,10,.75),rgba(4,5,10,.22) 68%,transparent)!important}
+.art.a2{background:radial-gradient(circle at 75% 25%,rgba(200,255,61,.95),transparent 22%),linear-gradient(135deg,#22134a,#12131e 68%)}
+.art.a2:before{background:linear-gradient(135deg,transparent 30%,rgba(124,58,237,.75));transform:rotate(-8deg) scale(1.1)}
+.art.a3{background:radial-gradient(circle at 55% 38%,rgba(124,58,237,.7),transparent 28%),linear-gradient(135deg,#1d2030,#0c0d13)}
+.art.a3:before{filter:hue-rotate(35deg);opacity:.8}
+.problem-copy h3{font-size:clamp(34px,4vw,60px);text-shadow:0 4px 24px rgba(0,0,0,.25)}
+.wk>p{color:#b5b7c5}
+.cs{background:linear-gradient(120deg,rgba(200,255,61,.07),rgba(124,58,237,.08));border:1px solid var(--g2);border-radius:18px;padding:clamp(20px,3vw,36px)}
+/* Form fields + contact */
+input,textarea,select{background:#11121b!important;color:#f5f5f2!important;border:1px solid rgba(255,255,255,.2)!important;border-radius:12px!important}
+input::placeholder,textarea::placeholder{color:#85889a}
+input:focus,textarea:focus,select:focus{border-color:var(--ac)!important;box-shadow:0 0 0 3px rgba(200,255,61,.1);outline:none}
+label{color:#d4d5df}
+.calendly-wrap{background:#11121b;border-radius:18px;overflow:hidden}
+footer{background:#08090e!important;border-top:1px solid var(--g2)}
+footer a:hover{color:var(--ac)}
+.fs{border-color:var(--g2);color:var(--ac)}
+small,.muted{color:#a2a4b3}
+/* Motion details */
+@keyframes chromaFloat{0%,100%{transform:translate3d(0,0,0) rotate(0deg)}50%{transform:translate3d(0,-12px,0) rotate(1.2deg)}}
+@keyframes chromaPulse{0%,100%{box-shadow:0 0 0 0 rgba(200,255,61,.0)}50%{box-shadow:0 0 0 9px rgba(200,255,61,.035)}}
+@keyframes chromaMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.hv .t1{animation:chromaFloat 7s ease-in-out infinite}
+.eb:before{animation:chromaPulse 3s ease-in-out infinite}
+.rv{transform:translateY(24px);transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1)}
+.rv.in{transform:translateY(0)}
+a,button{ -webkit-tap-highlight-color:transparent }
+a:focus-visible,button:focus-visible{outline:2px solid var(--ac);outline-offset:4px}
+@media(max-width:960px){nav ul.open{background:#0d0e16}.col,.plan{border-radius:16px!important}}
+@media(max-width:640px){body:before{background-size:42px 42px}.art{border-radius:14px}.hero .hv{border-radius:16px}.btn{min-height:46px}.work{gap:24px}}
+@media(prefers-reduced-motion:reduce){.hv .t1,.eb:before{animation:none!important}.rv{transform:none;opacity:1}}
+
+
+/* CHROMAGIC — high-contrast ivory / ink / signal-orange glass refresh */
+:root{
+ --bg:#f5f0e6;
+ --ink:#171613;
+ --g1:#625e56;
+ --g2:rgba(23,22,19,.16);
+ --ac:#ff6a2a;
+ color-scheme:light;
+}
+html{background:var(--bg);color:var(--ink)}
+body{
+ background:radial-gradient(ellipse at 86% 4%,rgba(255,106,42,.13),transparent 30%),radial-gradient(ellipse at 5% 42%,rgba(255,255,255,.78),transparent 32%),var(--bg);
+ color:var(--ink);
+}
+body:before{
+ opacity:.22;
+ background-image:linear-gradient(rgba(23,22,19,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(23,22,19,.06) 1px,transparent 1px);
+}
+::selection{background:var(--ac);color:#171613}
+header{background:rgba(245,240,230,.82);border-bottom:1px solid rgba(23,22,19,.13);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+nav ul.open{background:rgba(245,240,230,.97);border-color:var(--g2)}
+section{border-top-color:rgba(23,22,19,.13)}
+h1,h2,h3,h4{color:#171613}
+p{color:#514d46}
+.eb{color:#625e56}
+.eb:before{background:var(--ac);box-shadow:0 0 0 5px rgba(255,106,42,.12);}
+.lab{color:#625e56}
+.hero h1 em,.hero h1 .accent,.accent{color:var(--ac)}
+.hero .hv{border:1px solid rgba(255,255,255,.72);background:linear-gradient(135deg,rgba(255,255,255,.74),rgba(255,255,255,.24)),radial-gradient(circle at 78% 20%,rgba(255,106,42,.2),transparent 32%);box-shadow:0 30px 90px rgba(42,34,24,.12);backdrop-filter:blur(16px)}
+.hv:hover{border-color:rgba(255,106,42,.7);box-shadow:0 30px 90px rgba(255,106,42,.13)}
+.btn{background:var(--ac);border-color:var(--ac);color:#171613;box-shadow:0 7px 20px rgba(255,106,42,.14)}
+.btn:hover{background:#ff8150;border-color:#ff8150;color:#171613;box-shadow:0 12px 30px rgba(255,106,42,.25)}
+.btn.o{background:rgba(255,255,255,.46);color:#171613;border-color:rgba(23,22,19,.24);backdrop-filter:blur(12px)}
+.btn.o:hover{background:#171613;border-color:#171613;color:#f5f0e6}
+.tl{border-color:var(--ac);color:#171613}
+.col,.plan,.integration-panel,.creds>*,.cs,.fg>div,.calendly-wrap{border-color:rgba(23,22,19,.14)!important}
+.col,.plan,.integration-panel{background:linear-gradient(145deg,rgba(255,255,255,.78),rgba(255,255,255,.38));border-radius:22px!important;box-shadow:0 12px 35px rgba(39,31,22,.045);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.col:hover,.plan:hover{transform:translateY(-7px);border-color:rgba(255,106,42,.58)!important;box-shadow:0 24px 55px rgba(39,31,22,.12)}
+.plan{transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .35s,background .3s}
+/* Featured founding offer: dark ink surface, bright orange accent, high readable contrast */
+.plan.f,.plan.f.featured{background:linear-gradient(145deg,#201e1a,#302720)!important;color:#fffaf1;border:1px solid rgba(255,106,42,.72)!important;position:relative;overflow:hidden}
+.plan.f:before{content:"";position:absolute;right:-50px;top:-70px;width:180px;height:180px;border-radius:50%;background:rgba(255,106,42,.18);filter:blur(8px);pointer-events:none}
+.plan.f .lab,.plan.f p,.plan.f .payment-note,.plan.f .price,.plan.f .price small,.plan.f .price .local-price,.plan.f li,.plan.f strong{color:#fffaf1!important;position:relative}
+.plan.f .lab{color:#ff9b73!important}
+.plan.f .price{font-size:clamp(30px,3vw,38px)}
+.plan.f .price .local-price{display:block;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:9px 10px;font-size:13px!important;font-weight:700!important;margin-top:12px}
+.plan.f ul{border-top-color:rgba(255,255,255,.22)}
+.plan.f .btn{background:var(--ac);border-color:var(--ac);color:#171613}
+.plan.f .btn:hover{background:#ff956c}
+.plan .price,.plan strong{color:#171613}
+.plan .price small,.price .local-price,.payment-note{color:#625e56}
+.plan ul{border-top-color:rgba(23,22,19,.16)}
+.pricing-tools,.payment-help{border-color:rgba(23,22,19,.15);background:rgba(255,255,255,.44);border-radius:16px;backdrop-filter:blur(14px)}
+.currency-picker select{background:rgba(255,255,255,.8);border-color:rgba(23,22,19,.22)}
+.rate-status{color:#625e56}
+.steps li{border-color:rgba(23,22,19,.16)!important}
+.steps .lab{color:#d94b14}
+.art{border:1px solid rgba(23,22,19,.14);border-radius:20px;background:#e6ded0;box-shadow:0 14px 35px rgba(39,31,22,.08)}
+.art:hover{transform:translateY(-7px) scale(1.008);border-color:rgba(255,106,42,.72);box-shadow:0 24px 55px rgba(39,31,22,.15)}
+.art .tag{background:rgba(245,240,230,.88);color:#171613;border:1px solid rgba(23,22,19,.2);border-radius:999px;backdrop-filter:blur(14px)}
+.art.a1::after{background:linear-gradient(90deg,rgba(20,18,15,.76),rgba(20,18,15,.25) 68%,transparent)!important}
+.art.a2{background:radial-gradient(circle at 75% 25%,rgba(255,106,42,.95),transparent 23%),linear-gradient(135deg,#211d1a,#524238 68%)}
+.art.a2:before{background:linear-gradient(135deg,transparent 30%,rgba(255,106,42,.68));transform:rotate(-8deg) scale(1.1)}
+.art.a3{background:radial-gradient(circle at 55% 38%,rgba(255,106,42,.5),transparent 28%),linear-gradient(135deg,#e9e0d2,#bdb2a0)}
+.art.a3:before{filter:hue-rotate(325deg);opacity:.8}
+.problem-copy h3{color:#fffaf1;text-shadow:0 4px 24px rgba(0,0,0,.28)}
+.wk>p{color:#514d46}
+.cs{background:linear-gradient(120deg,rgba(255,255,255,.74),rgba(255,255,255,.4));border:1px solid rgba(23,22,19,.13);border-radius:22px;padding:clamp(20px,3vw,36px);backdrop-filter:blur(16px)}
+input,textarea,select{background:rgba(255,255,255,.78)!important;color:#171613!important;border:1px solid rgba(23,22,19,.22)!important;border-radius:12px!important}
+input::placeholder,textarea::placeholder{color:#716a60}
+input:focus,textarea:focus,select:focus{border-color:var(--ac)!important;box-shadow:0 0 0 4px rgba(255,106,42,.14);outline:none}
+label{color:#302c26}
+.calendly-wrap{background:rgba(255,255,255,.65);border-radius:20px;overflow:hidden}
+footer{background:#171613!important;border-top:1px solid rgba(255,255,255,.14)}
+footer,footer p,footer .lab{color:#f5f0e6}
+footer a:hover{color:#ff9b73}
+.fs{border-color:rgba(255,255,255,.2);color:#ff9b73}
+small,.muted{color:#625e56}
+a,button{-webkit-tap-highlight-color:transparent}
+a:focus-visible,button:focus-visible{outline:3px solid var(--ac);outline-offset:4px}
+/* Scroll flow and tactile interactions */
+html{scroll-behavior:smooth;scroll-padding-top:92px}
+.rv{will-change:transform,opacity}
+.btn:active,.plan-cta:active{transform:translateY(1px) scale(.98)}
+.plan-cta{transition:transform .2s ease,box-shadow .25s ease,background .25s ease}
+.plan-cta:hover{box-shadow:0 10px 28px rgba(255,106,42,.18)}
+@media(max-width:960px){nav ul.open{background:rgba(245,240,230,.98)}.col,.plan{border-radius:18px!important}}
+@media(max-width:640px){body:before{background-size:42px 42px}.art{border-radius:16px}.hero .hv{border-radius:18px}.btn{min-height:46px}.work{gap:24px}.plan.f .price .local-price{font-size:12px!important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hv .t1,.eb:before{animation:none!important}.rv{transform:none!important;opacity:1!important}.art,.btn,.plan{transition:none!important}}
+
+
+
+/* Conversion-focused refresh: clear hierarchy, readable contrast, restrained glass */
+:root{--bg:#f5f0e6;--ink:#171613;--g1:#5b5851;--g2:#d8d0c3;--ac:#f26a35;--cream:#fffaf1;--glass:rgba(255,250,241,.76);--f1:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;--f2:'Instrument Sans','Helvetica Neue',Arial,sans-serif}
+body{background:var(--bg);color:var(--ink)}
+p{color:#37342f}
+a{transition:color .22s ease,opacity .22s ease,transform .22s ease}
+.btn{background:var(--ac);color:#171613;border:1px solid #171613;border-radius:999px;font-weight:700;box-shadow:0 5px 0 rgba(23,22,19,.12);transition:transform .22s ease,box-shadow .22s ease,background .22s ease}
+.btn:hover{background:#ff8757;transform:translateY(-3px);box-shadow:0 8px 0 rgba(23,22,19,.12)}
+.btn:active{transform:translateY(0) scale(.985);box-shadow:0 2px 0 rgba(23,22,19,.12)}
+.btn.o{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+.btn.o:hover{background:var(--ink);color:var(--cream)}
+header{background:rgba(245,240,230,.86);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(23,22,19,.12)}
+.logo,nav a{color:var(--ink)}
+.hero{position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;width:34vw;height:34vw;min-width:260px;min-height:260px;right:-8vw;top:8%;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(242,106,53,.25),rgba(242,106,53,0) 68%);pointer-events:none}
+.hero .lead{font-size:clamp(17px,1.5vw,21px);line-height:1.55;max-width:48ch;margin-top:20px}
+.hero-reassurance{font-size:13px;color:#555047;margin-top:14px}
+.eb:before,.trust-dot{background:var(--ac)}
+.hv,.tile,.col,.wk,.integration-panel,.plan,.eq,.flow,.fld input,.fld select,.fld textarea,.payment-help,.pricing-tools,.faq-grid details{border:1px solid rgba(23,22,19,.16);box-shadow:0 12px 36px rgba(38,31,22,.045)}
+.hv{background:linear-gradient(145deg,#fffaf1 0%,#ece3d5 100%);border-radius:26px;overflow:hidden}
+.tile{border-radius:18px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(255,250,241,.8)}
+section{scroll-margin-top:88px}
+.trust-strip{min-height:0;padding:18px 0;background:#171613;color:#fffaf1;border-top:0}
+.trust-strip-inner{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.trust-strip-inner>div{display:grid;grid-template-columns:10px 1fr;column-gap:10px;align-content:center}
+.trust-dot{width:8px;height:8px;border-radius:50%;margin-top:7px;grid-row:span 2}
+.trust-strip strong{font-size:13px;line-height:1.3;color:#fffaf1}
+.trust-strip small{font-size:12px;color:#d4cabe;margin-top:3px}
+.work .art,.art{overflow:hidden}
+.problem-copy{max-width:88%;text-shadow:0 2px 16px rgba(0,0,0,.24)}
+.plan{background:rgba(255,250,241,.72);color:var(--ink);border-radius:22px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease}
+.plan:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(38,31,22,.11);border-color:rgba(242,106,53,.65)}
+.plan p,.plan li,.plan .payment-note,.plan .local-price{color:#39352f!important;opacity:1!important}
+.plan .price{color:#171613}
+.plan.f{background:#171613!important;color:#fffaf1!important;border:1px solid #171613}
+.plan.f .lab,.plan.f .price,.plan.f .base-price,.plan.f .price small,.plan.f p,.plan.f li,.plan.f .payment-note,.plan.f .local-price{color:#fffaf1!important;opacity:1!important}
+.plan.f p{color:#eee6da!important}
+.plan.f .plan-cta{background:var(--ac);color:#171613;border-color:var(--ac)}
+.plan.f .payment-note{border-top:1px solid rgba(255,250,241,.22)}
+.pricing-tools,.payment-help{border-radius:18px;background:rgba(255,250,241,.7);padding:20px}
+.fld input,.fld select,.fld textarea{background:#fffdf8;color:#171613;border-radius:12px}
+.fld input::placeholder,.fld textarea::placeholder{color:rgba(107,101,91,.58);opacity:1;transition:color .18s ease}
+.fld textarea:focus::placeholder{color:#6b655b}
+.fld textarea{min-height:112px;line-height:1.55;padding:14px 15px;resize:vertical}
+.fld textarea::placeholder{white-space:normal}
+.integration-panel{background:rgba(255,250,241,.7);border-radius:24px;padding:clamp(22px,4vw,42px);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.calendly-wrap iframe{width:100%;min-height:720px;border:0;border-radius:16px;background:#fffaf1}
+.decision-help{background:#eee6d9}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.faq-grid details{padding:20px 22px;border-radius:16px;background:rgba(255,250,241,.8);transition:transform .22s ease,border-color .22s ease}
+.faq-grid details:hover{transform:translateY(-2px);border-color:rgba(242,106,53,.7)}
+.faq-grid summary{cursor:pointer;font-weight:700;list-style:none;padding-right:24px;position:relative}
+.faq-grid summary::-webkit-details-marker{display:none}
+.faq-grid summary:after{content:"+";position:absolute;right:0;top:-3px;font-size:23px;color:#c84e21;transition:transform .2s ease}
+.faq-grid details[open] summary:after{content:"−"}
+.faq-grid details p{margin-top:12px;font-size:14px}
+.decision-cta{margin-top:24px;padding:22px 24px;border:1px solid rgba(23,22,19,.16);border-radius:18px;background:rgba(255,250,241,.7);display:flex;align-items:center;justify-content:space-between;gap:20px}
+.decision-cta strong{font-family:var(--f1);font-size:21px}
+.decision-cta p{font-size:14px;margin-top:4px}
+.sticky-meet{position:fixed;z-index:50;left:50%;bottom:18px;transform:translate(-50%,20px);width:min(720px,calc(100% - 28px));display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px 14px 12px 20px;border:1px solid rgba(255,250,241,.35);border-radius:20px;background:rgba(23,22,19,.94);color:#fffaf1;box-shadow:0 18px 60px rgba(0,0,0,.22);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);opacity:0;visibility:hidden;transition:opacity .25s ease,transform .25s ease,visibility .25s ease}
+.sticky-meet.visible{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.sticky-meet>div{display:flex;flex-direction:column;gap:2px;min-width:0}
+.sticky-meet strong{font-size:13px;color:#fffaf1}
+.sticky-meet span{font-size:12px;color:#ded6ca}
+.sticky-meet .btn{white-space:nowrap;flex-shrink:0}
+.sticky-close{background:transparent;border:0;color:#fffaf1;font-size:22px;cursor:pointer;padding:4px 5px;line-height:1}
+:focus-visible{outline:3px solid #c84e21;outline-offset:4px;border-radius:4px}
+@media(max-width:760px){.trust-strip-inner{grid-template-columns:1fr;gap:12px}.trust-strip-inner>div{grid-template-columns:10px 1fr}.trust-strip small{grid-column:2}.faq-grid{grid-template-columns:1fr}.decision-cta{align-items:flex-start;flex-direction:column}.sticky-meet{bottom:10px;padding:10px 11px 10px 14px;gap:8px}.sticky-meet strong{font-size:12px}.sticky-meet span{font-size:11px}.sticky-meet .btn{padding:11px 14px;font-size:12px}.sticky-close{font-size:20px}}
+@media(prefers-reduced-motion:reduce){.sticky-meet,.faq-grid details,.plan,.btn{transition:none!important}}
+
+
+/* Pricing refinement: compact, aligned, responsive and easy to scan */
+html, body { max-width:100%; overflow-x:clip; }
+#engagement { min-height:0; align-items:flex-start; padding:clamp(42px,5vw,68px) 0; }
+#engagement .wrap { width:100%; min-width:0; }
+#engagement .head { grid-template-columns:minmax(0,1fr); margin-bottom:22px; }
+#engagement .head h2 { max-width:19ch; }
+#engagement .pricing-tools {
+  display:grid; grid-template-columns:minmax(0,1fr) minmax(230px,300px);
+  align-items:center; gap:10px 24px; margin:0 0 16px; padding:16px 18px;
+  border:1px solid #d9d0c3; border-radius:16px; background:rgba(255,250,241,.78);
+  box-shadow:none;
+}
+#engagement .pricing-tools > p { max-width:62ch; font-size:13px; line-height:1.5; color:#454038; }
+#engagement .pricing-tools > p strong { color:#171613; }
+#engagement .currency-picker { min-width:0; display:grid; grid-template-columns:1fr; gap:6px; }
+#engagement .currency-picker label { font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#514b43; }
+#engagement .currency-picker select { width:100%; min-width:0; min-height:44px; padding:10px 12px; border-radius:10px!important; background:#fffdf8!important; }
+#engagement .rate-status { grid-column:1/-1; width:auto; font-size:11px; line-height:1.35; color:#62594f; }
+#engagement .plans { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; border:0; align-items:stretch; }
+#engagement .plan {
+  min-width:0; padding:22px 20px 18px; gap:12px; border:1px solid #d8d0c4!important;
+  border-radius:18px!important; background:#fffaf1!important; color:#171613!important;
+  box-shadow:0 5px 18px rgba(31,25,18,.035); display:flex; flex-direction:column;
+  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+}
+#engagement .plan:hover { transform:translateY(-3px); border-color:#f26a35!important; box-shadow:0 12px 26px rgba(31,25,18,.08); }
+#engagement .plan.f { background:#211b17!important; border:1px solid #f26a35!important; color:#fffaf1!important; }
+#engagement .plan .lab { color:#6b6257!important; font-size:10px; letter-spacing:.13em; margin:0; }
+#engagement .plan.f .lab { color:#ff9a72!important; }
+#engagement .plan .price { display:flex; align-items:baseline; flex-wrap:wrap; gap:5px; font-size:clamp(28px,2.5vw,38px); line-height:1.05; margin:0; color:#171613!important; }
+#engagement .plan .price small { font-size:12px; font-weight:500; color:#6a6259!important; }
+#engagement .plan.f .price, #engagement .plan.f .price small { color:#fffaf1!important; }
+#engagement .plan .price .local-price { display:block; flex:0 0 100%; margin:2px 0 0; padding:0; border:0; border-radius:0; background:transparent; font-size:11px!important; font-weight:500!important; line-height:1.35; color:#5c554d!important; }
+#engagement .plan.f .price .local-price { color:#e9ded2!important; }
+#engagement .plan > p:not(.payment-note) { margin:0; min-height:0; font-size:13px; line-height:1.45; color:#49433c!important; }
+#engagement .plan.f > p:not(.payment-note) { color:#eee6dc!important; }
+#engagement .plan ul { flex:1; margin:0; padding:12px 0 0; border-top:1px solid #e4dbce; font-size:12.5px; line-height:1.45; }
+#engagement .plan.f ul { border-top-color:rgba(255,250,241,.2); }
+#engagement .plan li { padding:3px 0; color:#37322c!important; }
+#engagement .plan.f li { color:#f2e9df!important; }
+#engagement .plan ul:empty { display:none; }
+#engagement .plan details { margin-top:0; font-size:12px; }
+#engagement .plan details summary { cursor:pointer; font-weight:700; padding:4px 0; }
+#engagement .plan details p { font-size:12px; margin-top:5px; }
+#engagement .plan .plan-cta { width:100%; min-height:44px; margin-top:auto; padding:11px 12px; font-size:12.5px; white-space:normal; line-height:1.25; border-radius:999px; }
+#engagement .plan.f .plan-cta { background:#f26a35!important; border-color:#f26a35!important; color:#171613!important; }
+#engagement .plan:not(.f) .plan-cta { background:transparent!important; border:1px solid #bcb1a2!important; color:#171613!important; box-shadow:none; }
+#engagement .plan:not(.f) .plan-cta:hover { background:#171613!important; color:#fffaf1!important; border-color:#171613!important; }
+#engagement .plan .payment-note { margin-top:0; padding-top:10px; border-top:1px solid #e4dbce; font-size:10.5px!important; line-height:1.35; color:#6a6259!important; }
+#engagement .plan.f .payment-note { border-top-color:rgba(255,250,241,.2); color:#e9ded2!important; }
+#engagement .payment-help { margin-top:14px; padding:14px 16px; border-radius:14px; font-size:12px; line-height:1.5; box-shadow:none; }
+#engagement .payment-help strong { display:inline; margin-right:5px; }
+@media (max-width:1050px) {
+  #engagement .plans { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  #engagement .plan { padding:20px; }
+  #engagement .plan .price { font-size:34px; }
+}
+@media (max-width:640px) {
+  #engagement { padding:42px 0; }
+  #engagement .pricing-tools { grid-template-columns:minmax(0,1fr); padding:15px; }
+  #engagement .rate-status { grid-column:auto; }
+  #engagement .plans { grid-template-columns:minmax(0,1fr); gap:12px; }
+  #engagement .plan { padding:20px; }
+  #engagement .plan .price { font-size:36px; }
+  #engagement .plan > p:not(.payment-note) { max-width:42ch; }
+}
+@media (prefers-reduced-motion:reduce) { #engagement .plan { transition:none!important; } }
+
+
+
+/* Final responsive polish: prevent clipping, restore breathing room, strengthen navigation and FAQ */
+*, *::before, *::after { box-sizing: border-box; }
+html { overflow-x: clip; }
+body { width: 100%; max-width: 100%; overflow-x: clip; }
+img, svg, video, iframe { max-width: 100%; }
+.wrap { width: min(100% - 40px, 1240px); margin-inline: auto; }
+section { min-width: 0; }
+section .head, section .head > *, .two > *, .cols > *, .work > *, .steps > *, .plans > *, .plan > *, .faq-grid > * { min-width: 0; }
+.cols { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.cols.c3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.col { padding: 22px 18px 18px; overflow-wrap: anywhere; }
+.col:first-child { padding-left: 18px; }
+.col h3 { font-size: clamp(18px, 1.6vw, 22px); line-height: 1.16; overflow-wrap: anywhere; }
+.col p { font-size: 15px; line-height: 1.55; }
+.col .lab { margin-bottom: 18px; }
+#services .cols, #why .cols { gap: 12px; border-top: 0; }
+#services .col, #why .col { border: 1px solid #ddd4c8; border-radius: 18px; background: rgba(255,250,241,.76); padding: 22px; }
+#services .col:hover, #why .col:hover { background: #fffaf1; transform: translateY(-3px); }
+#services .col h3, #why .col h3 { margin-bottom: 10px; }
+#services .col p, #why .col p { margin-bottom: 0; }
+.art { aspect-ratio: 4 / 3; min-height: 220px; border-radius: 18px; }
+.art.problem-art { isolation: isolate; background-color: #39332d; }
+.art.problem-art > img { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; font-size: 0; }
+.art.problem-art::after { z-index: 1; }
+.problem-copy { left: clamp(18px, 3vw, 30px); bottom: clamp(20px, 3vw, 30px); width: calc(100% - 44px); max-width: 360px; }
+.problem-copy h3 { font-size: clamp(34px, 4vw, 58px); line-height: .96; overflow-wrap: anywhere; }
+.problem-copy p { font-size: 14px; line-height: 1.5; }
+.wk > h3, .wk > p { overflow-wrap: anywhere; }
+.wk > p { font-size: 15px; line-height: 1.55; }
+.faq-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; max-width: 900px; margin-inline: auto; }
+.faq-grid details { padding: 22px 24px; border-radius: 16px; }
+.faq-grid summary { font-size: clamp(16px, 1.5vw, 18px); line-height: 1.45; padding-right: 36px; text-decoration: none; }
+.faq-grid details p { font-size: 15px; line-height: 1.65; max-width: 72ch; }
+.mb { display: none; color: #fffaf1 !important; background: #171613 !important; border: 1px solid #171613 !important; border-radius: 999px; padding: 11px 17px; font-size: 13px; }
+header { background: rgba(245,240,230,.94); }
+nav a:not(.btn) { color: #171613; }
+#engagement .plan { overflow-wrap: anywhere; }
+#engagement .plan > p:not(.payment-note) { font-size: 14px; line-height: 1.6; }
+#engagement .plan .plan-cta { min-height: 48px; font-size: 14px; }
+#engagement .plan .price .local-price { white-space: normal; overflow-wrap: anywhere; }
+@media (max-width: 900px) {
+  .wrap { width: min(100% - 32px, 1240px); }
+  .cols, .cols.c3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #services .cols, #why .cols { gap: 10px; }
+  .steps { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .steps li, .steps li + li { padding: 18px; border: 1px solid #ddd4c8; border-radius: 14px; }
+  .steps li + li:before { display: none; }
+  .work { grid-template-columns: minmax(0,1fr); gap: 28px; }
+  .art { aspect-ratio: 16 / 10; min-height: 240px; }
+  .wk > h3 { font-size: 22px; }
+  .faq-grid { max-width: none; }
+}
+@media (max-width: 760px) {
+  .mb { display: inline-flex; align-items: center; justify-content: center; min-width: 76px; }
+  nav { position: relative; }
+  nav ul { display: none; position: absolute; z-index: 100; top: calc(100% + 12px); right: 0; width: min(320px, calc(100vw - 32px)); padding: 16px; margin: 0; flex-direction: column; align-items: stretch; gap: 4px; background: #171613; color: #fffaf1; border: 1px solid rgba(255,250,241,.18); border-radius: 18px; box-shadow: 0 22px 55px rgba(20,16,12,.24); }
+  nav ul.open { display: flex; }
+  nav ul li { width: 100%; }
+  nav ul a:not(.btn) { display: block; padding: 12px 10px; color: #fffaf1 !important; border-radius: 9px; }
+  nav ul a:not(.btn):hover { background: rgba(255,250,241,.1); text-decoration: none; }
+  nav ul .btn { width: 100%; justify-content: center; margin-top: 8px; }
+  .cols, .cols.c3 { grid-template-columns: minmax(0, 1fr); }
+  #services .col, #why .col { padding: 22px; }
+  .steps { grid-template-columns: minmax(0,1fr); }
+  .pricing-tools { min-width: 0; }
+  .pricing-tools > * { min-width: 0; }
+  #engagement .plans { grid-template-columns: minmax(0,1fr); }
+  #engagement .plan { padding: 22px; }
+  .faq-grid details { padding: 20px; }
+  .faq-grid summary { font-size: 16px; }
+  .wrap { width: calc(100% - 32px); }
+}
+@media (max-width: 380px) {
+  .wrap { width: calc(100% - 24px); }
+  .problem-copy h3 { font-size: 34px; }
+  .art { min-height: 210px; }
+  #engagement .plan .price { font-size: 32px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+
+
+/* FINAL SPACING & READABILITY PASS — override earlier theme experiments */
+:root { --bg:#F5F0E6; --ink:#191714; --ac:#FF6A2A; --g1:#6E685F; --g2:rgba(25,23,20,.16); }
+*,*::before,*::after { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { overflow-x:clip; background:#F5F0E6; color:#191714; }
+.wrap { width:min(1240px, calc(100% - 48px)); margin-inline:auto; }
+section { padding-block:clamp(64px,8vw,112px); }
+section .head { margin-bottom:clamp(28px,4vw,48px); }
+section h2 { max-width:18ch; line-height:1.02; letter-spacing:-.045em; }
+p { line-height:1.65; }
+
+/* Service and principle cards: readable, padded, never clipped */
+.cols,.cols.c3 { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; border:0; }
+.col,.steps li { min-width:0; padding:clamp(22px,2.4vw,34px); border:1px solid rgba(25,23,20,.13)!important; border-radius:20px!important; background:rgba(255,252,246,.76); box-shadow:0 10px 30px rgba(36,28,20,.035); }
+.col:first-child { padding-left:clamp(22px,2.4vw,34px); }
+.col:last-child { border:1px solid rgba(25,23,20,.13)!important; }
+.col .lab,.steps .lab { margin-bottom:20px; color:#786F64; }
+.col h3,.steps h3 { font-size:clamp(20px,2vw,25px); line-height:1.15; overflow-wrap:anywhere; margin-bottom:12px; }
+.col p,.steps p { font-size:15px; line-height:1.65; color:#514B44; margin:0; }
+.steps { grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px; border:0; }
+.steps li+li { padding-left:clamp(18px,2vw,30px); }
+.steps li+li:before { display:none; }
+
+/* Portfolio: keep copy inside the artwork and give each card a clear rhythm */
+.work { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(18px,2.1vw,30px); align-items:stretch; }
+.wk { min-width:0; overflow:hidden; }
+.art,.art.problem-art { position:relative; isolation:isolate; width:100%; aspect-ratio:1.22 / 1; min-width:0; margin:0 0 22px; overflow:hidden; border-radius:22px; border:1px solid rgba(25,23,20,.14); }
+.art img { position:absolute; inset:0; z-index:-2; width:100%; height:100%; object-fit:cover; object-position:center; }
+.art:before { pointer-events:none; }
+.art.a1::after,.art.problem-art::after { content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; background:linear-gradient(110deg,rgba(18,16,14,.76),rgba(18,16,14,.24) 100%); }
+.art.a2::after { background:linear-gradient(110deg,rgba(18,16,14,.62),rgba(18,16,14,.16)); }
+.art.a3::after { background:linear-gradient(110deg,rgba(18,16,14,.58),rgba(18,16,14,.14)); }
+.problem-copy { position:absolute; left:clamp(20px,2.5vw,34px); right:clamp(18px,2vw,28px); bottom:clamp(22px,2.8vw,36px); z-index:2; width:auto; max-width:calc(100% - 44px); min-width:0; overflow-wrap:anywhere; }
+.problem-copy > span { display:block; margin-bottom:clamp(12px,1.4vw,18px); font-size:10px; line-height:1.4; letter-spacing:.16em; }
+.problem-copy h3 { max-width:100%; font-size:clamp(30px,3.2vw,52px); line-height:.98; letter-spacing:-.055em; overflow-wrap:anywhere; margin:0 0 14px; }
+.problem-copy p { max-width:27ch; font-size:clamp(13px,1.1vw,16px); line-height:1.55; margin:0; }
+.wk > .lab { margin:0 0 10px; color:#746D63; font-size:11px; letter-spacing:.1em; }
+.wk > h3 { margin:0 0 10px; font-size:clamp(20px,2vw,27px); line-height:1.14; letter-spacing:-.035em; overflow-wrap:anywhere; }
+.wk > p { margin:0; max-width:38ch; font-size:15px; line-height:1.65; color:#575148; overflow-wrap:anywhere; }
+.cs { margin-top:clamp(28px,4vw,48px); padding:clamp(22px,3vw,36px); gap:24px; border-radius:20px; }
+.cs p { margin:0; max-width:58ch; line-height:1.65; }
+
+/* Pricing: generous padding, shorter copy, clear CTA, no cramped deliverable lists */
+.plans { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; border:0; align-items:stretch; }
+.plan { min-width:0; min-height:390px; padding:clamp(24px,2.4vw,34px); display:flex; flex-direction:column; align-items:stretch; gap:0; border:1px solid rgba(25,23,20,.14)!important; border-radius:24px!important; background:#FFFBF4!important; box-shadow:0 12px 32px rgba(36,28,20,.045); overflow:hidden; }
+.plan.f,.plan.f.featured { background:#211C18!important; color:#FFF9EF!important; border:1px solid rgba(255,106,42,.8)!important; }
+.plan .lab { display:block; margin:0 0 24px; font-size:11px; line-height:1.4; letter-spacing:.13em; text-transform:uppercase; color:#756C60!important; }
+.plan.f .lab { color:#FF9A72!important; }
+.plan .price { display:flex; flex-wrap:wrap; align-items:baseline; gap:8px; margin-bottom:8px; font-size:clamp(32px,3vw,42px); line-height:1.05; letter-spacing:-.055em; }
+.plan .price small { font-size:14px; font-weight:500; color:#6F675E!important; }
+.plan.f .price,.plan.f .price small { color:#FFF9EF!important; }
+.plan .price .local-price { display:block; flex-basis:100%; margin-top:4px; font-size:12px; line-height:1.5; font-weight:500; color:#6F675E!important; }
+.plan.f .price .local-price { display:block; padding:0; margin-top:5px; border:0; background:none; color:#E5D9CC!important; font-size:12px!important; }
+.plan > p:not(.payment-note) { margin:18px 0 28px; font-size:15px; line-height:1.7; color:#514A42; }
+.plan.f > p:not(.payment-note) { color:#F0E8DD!important; }
+.plan ul,.plan details { display:none!important; }
+.plan .plan-cta,.plan .btn { width:100%; min-height:52px; margin-top:auto; padding:14px 16px; display:flex; justify-content:center; align-items:center; text-align:center; white-space:normal; line-height:1.35; border-radius:999px; font-size:14px; }
+.plan:not(.f) .btn.o { background:transparent; color:#191714; border:1px solid rgba(25,23,20,.3); }
+.plan:not(.f) .btn.o:hover { background:#191714; color:#FFF9EF; }
+.plan.f .plan-cta { background:#FF6A2A!important; border-color:#FF6A2A!important; color:#191714!important; }
+.plan .payment-note { margin:18px 0 0!important; padding-top:14px; border-top:1px solid rgba(25,23,20,.12); font-size:11px!important; line-height:1.5; color:#71695F!important; }
+.plan.f .payment-note { border-color:rgba(255,255,255,.17); color:#D6C9BC!important; }
+.pricing-tools { margin-bottom:24px; padding:clamp(18px,2vw,26px); gap:18px; border-radius:18px; }
+.pricing-tools p { max-width:60ch; font-size:14px; line-height:1.65; }
+.currency-picker { flex-wrap:wrap; min-width:0; gap:10px; }
+.currency-picker select { min-width:190px; max-width:100%; padding:12px 14px; color:#191714!important; background:#FFFBF4!important; border:1px solid rgba(25,23,20,.22)!important; }
+.rate-status { margin-top:8px; line-height:1.5; }
+.payment-help { margin-top:24px; padding:22px 24px; border-radius:18px; font-size:13px; line-height:1.7; }
+
+/* FAQ: larger hit areas and comfortable reading width */
+.faq-grid { display:grid; grid-template-columns:1fr; gap:12px; max-width:900px; }
+.faq-grid details { margin:0; padding:0; border:1px solid rgba(25,23,20,.14); border-radius:16px; background:rgba(255,251,244,.82); overflow:hidden; }
+.faq-grid summary { position:relative; padding:22px 56px 22px 24px; font-size:16px; line-height:1.45; font-weight:700; text-decoration:none; list-style:none; cursor:pointer; }
+.faq-grid summary::-webkit-details-marker { display:none; }
+.faq-grid summary:after { content:"+"; position:absolute; right:22px; top:50%; transform:translateY(-50%); color:#E95B25; font-size:24px; font-weight:400; }
+.faq-grid details[open] summary:after { content:"−"; }
+.faq-grid details p { margin:0; padding:0 24px 24px; max-width:72ch; font-size:15px; line-height:1.75; color:#514B44; }
+
+/* Mobile and tablet: avoid clipped words and over-packed columns */
+@media(max-width:1100px) {
+ .plans { grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+ .plan { min-height:350px; }
+ .steps { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .work { gap:18px; }
+}
+@media(max-width:760px) {
+ .wrap { width:min(100% - 36px, 560px); }
+ section { padding-block:58px; }
+ .cols,.cols.c3,.work,.plans,.steps { grid-template-columns:minmax(0,1fr); }
+ .col,.col:first-child,.steps li,.steps li+li { padding:24px; }
+ .col .lab,.steps .lab { margin-bottom:16px; }
+ .art,.art.problem-art { aspect-ratio:1.12 / 1; margin-bottom:18px; border-radius:20px; }
+ .problem-copy { left:22px; right:22px; bottom:24px; max-width:calc(100% - 44px); }
+ .problem-copy h3 { font-size:clamp(38px,10vw,54px); }
+ .problem-copy p { font-size:14px; max-width:30ch; }
+ .wk > h3 { font-size:24px; }
+ .wk > p { font-size:15px; }
+ .plans { gap:14px; }
+ .plan { min-height:0; padding:26px; }
+ .plan .lab { margin-bottom:18px; }
+ .plan > p:not(.payment-note) { margin:16px 0 24px; }
+ .plan .plan-cta,.plan .btn { margin-top:0; }
+ .plan .payment-note { margin-top:16px!important; }
+ .pricing-tools { align-items:stretch; }
+ .currency-picker { align-items:flex-start; flex-direction:column; }
+ .currency-picker select { width:100%; }
+ .faq-grid summary { padding:20px 48px 20px 18px; font-size:15px; }
+ .faq-grid summary:after { right:16px; }
+ .faq-grid details p { padding:0 18px 20px; font-size:14px; }
+ .cs { align-items:flex-start; }
+}
+@media(prefers-reduced-motion:reduce) {
+ *,*::before,*::after { scroll-behavior:auto!important; animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; }
+}
+
+
+
+/* Final pricing + booking polish: contained copy, calm spacing, clear next step */
+#engagement { scroll-margin-top: 24px; }
+#engagement .plans { align-items:stretch; gap:18px; }
+#engagement .plan {
+  min-width:0; min-height:420px; height:100%; overflow:hidden;
+  padding:clamp(24px,2.1vw,32px); gap:0; border-radius:24px!important;
+  display:flex; flex-direction:column; align-items:stretch;
+}
+#engagement .plan .lab { margin:0 0 22px; line-height:1.45; }
+#engagement .plan .price { min-width:0; margin:0 0 8px; row-gap:7px; overflow-wrap:anywhere; }
+#engagement .plan .price .base-price { white-space:nowrap; }
+#engagement .plan .price small { white-space:nowrap; }
+#engagement .plan .price .local-price { max-width:100%; overflow-wrap:anywhere; }
+#engagement .plan > p:not(.payment-note) {
+  margin:18px 0 28px!important; max-width:30ch; min-width:0;
+  font-size:15px!important; line-height:1.75!important; overflow-wrap:break-word; hyphens:auto;
+}
+#engagement .plan .plan-cta {
+  width:100%; min-width:0; min-height:52px; margin-top:auto; padding:14px 16px;
+  font-size:14px; line-height:1.35; white-space:normal; overflow-wrap:anywhere;
+}
+#engagement .plan .payment-note {
+  width:100%; min-width:0; margin:18px 0 0!important; padding:14px 0 0;
+  line-height:1.55!important; overflow-wrap:anywhere; border-top:1px solid rgba(25,23,20,.13);
+}
+#engagement .plan.f .payment-note { border-top-color:rgba(255,250,241,.18); }
+#engagement .pricing-tools { margin-bottom:24px; padding:22px 24px; gap:18px 28px; }
+#engagement .payment-help { margin-top:22px; padding:20px 22px; line-height:1.7; }
+#book-call { scroll-margin-top:24px; }
+#book-call .integration-panel { padding:clamp(24px,4vw,44px); border-radius:24px; background:rgba(255,251,244,.8); }
+#book-call .integration-panel > p:not(.eb) { max-width:68ch; line-height:1.75; }
+#book-call .calendly-wrap { min-width:0; border-radius:18px; }
+.selected-plan-banner { margin:22px 0; padding:20px 22px; border:1px solid rgba(255,106,42,.55); border-radius:18px; background:linear-gradient(120deg,rgba(255,106,42,.10),rgba(255,251,244,.88)); }
+.selected-plan-banner[hidden] { display:none!important; }
+.selected-plan-kicker { display:block; margin-bottom:7px; color:#A9431C; font-size:10px; font-weight:800; letter-spacing:.14em; }
+.selected-plan-banner strong { display:block; font-size:clamp(18px,2vw,23px); line-height:1.25; letter-spacing:-.02em; }
+.selected-plan-banner p { max-width:64ch; margin:8px 0 0; font-size:14px; line-height:1.65; color:#514B44; }
+@media(max-width:1100px) {
+ #engagement .plans { grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+ #engagement .plan { min-height:390px; }
+}
+@media(max-width:760px) {
+ #engagement .plans { grid-template-columns:minmax(0,1fr); gap:14px; }
+ #engagement .plan { min-height:0; padding:26px; }
+ #engagement .plan .lab { margin-bottom:18px; }
+ #engagement .plan > p:not(.payment-note) { max-width:38ch; margin:16px 0 26px!important; }
+ #engagement .plan .payment-note { margin-top:16px!important; }
+ #engagement .pricing-tools { padding:18px; }
+ #book-call .integration-panel { padding:22px 18px; }
+ #book-call .calendly-wrap { height:720px; }
+ .selected-plan-banner { padding:18px; }
+}
+
+
+
+/* PORTFOLIO CARD SPACING FIX — keep every text block comfortably inside its card */
+#work .work {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 28px);
+  align-items: stretch;
+}
+#work .wk {
+  min-width: 0;
+  box-sizing: border-box;
+  padding: clamp(14px, 1.6vw, 22px);
+  border: 1px solid rgba(30, 27, 23, .14);
+  border-radius: 18px;
+  background: rgba(255, 252, 246, .72);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(40, 31, 18, .035);
+}
+#work .wk .art {
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 1.16 / 1;
+  margin: 0 0 20px;
+  border: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  flex: 0 0 auto;
+}
+#work .wk .tag { top: 12px; left: 12px; }
+#work .wk .lab {
+  display: block;
+  margin: 0 0 10px;
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: .12em;
+  overflow-wrap: anywhere;
+}
+#work .wk > h3 {
+  margin: 0 0 10px;
+  max-width: 100%;
+  font-size: clamp(20px, 1.7vw, 25px);
+  line-height: 1.12;
+  letter-spacing: -.035em;
+  overflow-wrap: anywhere;
+}
+#work .wk > p {
+  margin: 0;
+  max-width: 100%;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--muted, #5f5b53);
+  overflow-wrap: anywhere;
+}
+#work .problem-copy {
+  left: clamp(16px, 2vw, 24px);
+  bottom: clamp(18px, 2vw, 24px);
+  width: calc(100% - 2 * clamp(16px, 2vw, 24px));
+  max-width: 100%;
+  box-sizing: border-box;
+}
+#work .problem-copy h3 {
+  font-size: clamp(30px, 3vw, 48px);
+  line-height: .98;
+  overflow-wrap: anywhere;
+}
+#work .problem-copy p {
+  max-width: 27ch;
+  font-size: 13px;
+  line-height: 1.5;
+}
+#work .cs { margin-top: 30px; }
+@media (max-width: 900px) {
+  #work .work { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #work .wk { padding: 16px; }
+  #work .wk .art { aspect-ratio: 1.1 / 1; }
+}
+@media (max-width: 600px) {
+  #work .work { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  #work .wk { padding: 16px; border-radius: 16px; }
+  #work .wk .art { aspect-ratio: 1.25 / 1; margin-bottom: 18px; }
+  #work .wk > h3 { font-size: clamp(21px, 6vw, 26px); }
+  #work .wk > p { font-size: 15px; line-height: 1.65; }
+  #work .problem-copy h3 { font-size: clamp(34px, 10vw, 48px); }
+}
+
 </style>
 
 <!-- Analytics is opt-in until you replace the placeholder GA4 measurement ID in the script below. -->
-<meta name="color-scheme" content="light">
+<meta name="color-scheme" content="light dark">
 </head>
 <body>
 <header><div class="wrap nav">
@@ -212,7 +903,7 @@ footer h4{font:600 10.5px var(--f2);letter-spacing:.14em;text-transform:uppercas
   <p class="eb">AI-Powered Creative Department</p>
   <h1>Your Creative Department, Without the Payroll.</h1>
   <p class="lead">Design, video, motion, 3D and content — delivered through one flexible creative team built around your business.</p>
-  <div class="ctas"><a class="btn" href="#audit">Request a Creative Audit →</a><a class="tl" href="#process">See How It Works</a></div>
+  <div class="ctas"><a class="btn" href="#book-call">Book a 15-Minute Fit Call <span aria-hidden="true">↗</span></a><a class="tl" href="#process">See How It Works</a></div><p class="hero-reassurance">A short, practical conversation. No pressure and no obligation.</p>
   <p class="strip">DESIGN · MOTION · VIDEO · 3D · CONTENT</p>
  </div>
  <div class="hv" role="img" aria-label="Abstract composition of editorial layout, 3D sphere and motion frames">
@@ -221,6 +912,14 @@ footer h4{font:600 10.5px var(--f2);letter-spacing:.14em;text-transform:uppercas
   <div class="tile t3"><span class="lab">Motion frames</span><div class="frames"><i></i><i></i><i></i><i></i></div><div class="play"></div></div>
  </div>
 </div></section>
+
+<section class="trust-strip" aria-label="How Chromagic works">
+ <div class="wrap trust-strip-inner rv">
+  <div><span class="trust-dot"></span><strong>Human-led creative direction</strong><small>AI-assisted where it helps</small></div>
+  <div><span class="trust-dot"></span><strong>One connected workflow</strong><small>Design · Motion · Video · 3D</small></div>
+  <div><span class="trust-dot"></span><strong>Start with a conversation</strong><small>No pressure to commit</small></div>
+ </div>
+</section>
 
 <section id="problem"><div class="wrap two">
  <div class="rv">
@@ -269,22 +968,24 @@ footer h4{font:600 10.5px var(--f2);letter-spacing:.14em;text-transform:uppercas
 </div></section>
 
 <section id="work"><div class="wrap">
- <div class="head rv"><div><p class="eb">Selected work</p><h2>Ideas are easy. Making them work is the craft.</h2></div></div>
+ <div class="head rv"><div><p class="eb">Selected work</p><h2>Good creative solves real problems.</h2></div></div>
  <div class="work rv">
   <div class="wk">
-<div class="art a1">
-  <img
-    src="https://res.cloudinary.com/fvvjao8e/image/upload/v1792097158/cld-sample-5.jpg"
-    alt="Chromagic Design Studios portfolio project"
-    loading="lazy"
-    decoding="async"
-    style="width:100%;height:100%;object-fit:cover;display:block;"
-  />
-  <span class="tag">Concept work</span>
-</div>
-<span class="lab">01 · Brand & Content</span><h3>Stronger visual systems</h3><p>Transforming communication through stronger visual systems.</p></div>
-  <div class="wk"><div class="art a2"><span class="tag">Concept work</span></div><span class="lab">02 · Motion & Video</span><h3>Movement, stories, attention</h3><p>Turning ideas into movement, stories and attention.</p></div>
-  <div class="wk"><div class="art a3"><span class="tag">Concept work</span></div><span class="lab">03 · 3D & Visualisation</span><h3>Visuals that don't exist yet</h3><p>Building visuals that don't exist yet.</p></div>
+   <div class="art a1 problem-art">
+    <img src="https://res.cloudinary.com/fvvjao8e/image/upload/f_auto,q_auto/v1792097158/cld-sample-5.jpg" alt="White sneaker product campaign on a blue background" loading="lazy" decoding="async" onerror="this.style.display='none'">
+    <div class="problem-copy"><span>THE PROBLEM</span><h3>BLENDING<br>IN?</h3><p>Good products deserve better visibility.</p></div>
+    <span class="tag">Concept work</span>
+   </div>
+   <span class="lab">01 · Brand & Content</span><h3>Good product. Forgettable presence.</h3><p>When the visual identity doesn't stand out, even great products get overlooked.</p>
+  </div>
+  <div class="wk">
+   <div class="art a2 problem-art"><div class="problem-copy"><span>THE PROBLEM</span><h3>SCROLL.<br>SKIP.</h3><p>Static content struggles to hold attention.</p></div><span class="tag">Concept work</span></div>
+   <span class="lab">02 · Motion & Video</span><h3>Attention is hard to earn.</h3><p>Turn passive viewing into a story people want to watch.</p>
+  </div>
+  <div class="wk">
+   <div class="art a3 problem-art"><div class="problem-copy"><span>THE PROBLEM</span><h3>CAN'T<br>PICTURE IT?</h3><p>Make the idea feel real before it exists.</p></div><span class="tag">Concept work</span></div>
+   <span class="lab">03 · 3D & Visualisation</span><h3>Ideas need to be seen.</h3><p>Bring products, concepts and future spaces into view with 3D.</p>
+  </div>
  </div>
  <div class="cs rv"><p><strong>Personalised case studies, shared after a quick call.</strong> Tell us what you're building and we'll send work relevant to your business and industry — not a generic showreel.</p><a class="btn" href="#contact">Book a Quick Call →</a></div>
 </div></section>
@@ -293,7 +994,7 @@ footer h4{font:600 10.5px var(--f2);letter-spacing:.14em;text-transform:uppercas
  <div class="rv">
   <p class="eb">Start with something useful</p>
   <h2>We'll show you what we'd change.</h2>
-  <p style="margin:16px 0 22px">Give us your website, LinkedIn presence or a recent campaign. No generic agency pitch — just a practical look at where your visual communication can improve.</p>
+  <p style="margin:16px 0 22px">Share your website, LinkedIn presence or a recent campaign. We’ll discuss the biggest opportunities and, where useful, suggest a practical direction — not deliver a generic agency pitch.</p>
   <a class="btn" href="#contact">Request Your Creative Audit →</a>
   <small>15-minute conversation · No obligation</small>
  </div>
@@ -309,7 +1010,8 @@ footer h4{font:600 10.5px var(--f2);letter-spacing:.14em;text-transform:uppercas
  <div class="integration-panel rv">
   <p class="eb">15-minute discovery call</p>
   <h3>Pick a time that works for you.</h3>
-  <p>Book a short conversation about your goals, creative workload and the best-fit package. If the calendar does not load yet, use the contact form and we’ll arrange a time.</p>
+  <p>Use the call to explain your goals, current creative workload and what you need next. We’ll talk through fit, process and sensible next steps. No preparation or commitment required. If the calendar does not load, request a time through the contact form.</p>
+  <div id="selected-plan-banner" class="selected-plan-banner" hidden aria-live="polite"><span class="selected-plan-kicker">YOUR STARTING POINT</span><strong id="selected-plan-title">Let’s find the right fit</strong><p id="selected-plan-description">We’ll use the call to understand your priorities and whether this level of creative support makes sense.</p></div>
   <div id="calendly-container" class="calendly-wrap" aria-label="15-minute discovery call booking calendar">
    <div id="calendly-placeholder" style="padding:24px"><p><strong>Calendar setup required.</strong></p><p>Replace <code>YOUR_CALENDLY_USERNAME</code> in the site configuration with your Calendly 15-minute event link to activate online booking.</p><a class="btn o" href="#contact">Request a time by email →</a></div>
   </div>
@@ -324,10 +1026,10 @@ footer h4{font:600 10.5px var(--f2);letter-spacing:.14em;text-transform:uppercas
   <div class="rate-status" id="rate-status" aria-live="polite">Loading latest exchange rates…</div>
  </div>
  <div class="plans rv">
-  <article class="plan f"><span class="lab">Founding client</span><div class="price" data-usd="179"><span class="base-price">$179</span> <small>/ 30 days</small><span class="local-price" data-local-price>≈ $179 USD</span></div><p>A limited pilot for selected early clients. Built to prove the workflow before a recurring engagement.</p><ul></ul><button class="btn plan-cta" type="button" data-plan="Founding Client">Discuss this plan →</button><p class="payment-note">$179 for 30 days · billed in USD</p></article>
-  <article class="plan"><span class="lab">Foundation</span><div class="price" data-usd="239"><span class="base-price">$239</span> <small>/ month</small><span class="local-price" data-local-price>≈ $239 USD</span></div><p>For consistent ongoing creative production.</p><ul><li>12 creatives</li><li>4 short videos</li><li>4 LinkedIn posts</li><li>1 campaign</li></ul><button class="btn o plan-cta" type="button" data-plan="Foundation">Choose Foundation →</button><p class="payment-note">$239/month · billed in USD</p></article>
-  <article class="plan"><span class="lab">Growth</span><div class="price" data-usd="419"><span class="base-price">$419</span> <small>/ month</small><span class="local-price" data-local-price>≈ $419 USD</span></div><p>For companies with a higher volume of creative needs.</p><ul><li>16 creatives · 8 videos</li><li>8 LinkedIn posts</li><li>2 campaigns</li></ul><details><summary>Full scope</summary><p>Also: 2 motion pieces, 1 deck, strategy.</p></details><button class="btn o plan-cta" type="button" data-plan="Growth">Choose Growth →</button><p class="payment-note">$419/month · billed in USD</p></article>
-  <article class="plan"><span class="lab">Scale</span><div class="price" data-usd="719"><span class="base-price">$719</span> <small>/ month</small><span class="local-price" data-local-price>≈ $719 USD</span></div><p>For broader multidisciplinary production.</p><ul><li>20+ creatives · 12 videos</li><li>Founder content</li><li>Product animation</li></ul><details><summary>Full scope</summary><p>Also: motion, decks, landing visuals, 3D.</p></details><button class="btn o plan-cta" type="button" data-plan="Scale">Choose Scale →</button><p class="payment-note">$719/month · billed in USD</p></article>
+  <article class="plan f"><span class="lab">Founding client</span><div class="price" data-usd="179"><span class="base-price">$179</span> <small>/ 30 days</small><span class="local-price" data-local-price>≈ $179 USD</span></div><p>Your creative team, focused on your business, brand and the priorities that matter right now.</p><button class="btn plan-cta" type="button" data-plan="Founding Client">Discuss this plan →</button><p class="payment-note">$179 for 30 days · billed in USD</p></article>
+  <article class="plan"><span class="lab">Foundation</span><div class="price" data-usd="239"><span class="base-price">$239</span> <small>/ month</small><span class="local-price" data-local-price>≈ $239 USD</span></div><p>Your dedicated creative team, tailored to your brand, goals and day-to-day business needs.</p><button class="btn o plan-cta" type="button" data-plan="Foundation">Choose Foundation →</button><p class="payment-note">$239/month · billed in USD</p></article>
+  <article class="plan"><span class="lab">Growth</span><div class="price" data-usd="419"><span class="base-price">$419</span> <small>/ month</small><span class="local-price" data-local-price>≈ $419 USD</span></div><p>A closer creative partnership shaped around your team, changing priorities and growth.</p><button class="btn o plan-cta" type="button" data-plan="Growth">Choose Growth →</button><p class="payment-note">$419/month · billed in USD</p></article>
+  <article class="plan"><span class="lab">Scale</span><div class="price" data-usd="719"><span class="base-price">$719</span> <small>/ month</small><span class="local-price" data-local-price>≈ $719 USD</span></div><p>A flexible, multidisciplinary creative team built around your business, your ambitions and the work ahead.</p><button class="btn o plan-cta" type="button" data-plan="Scale">Choose Scale →</button><p class="payment-note">$719/month · billed in USD</p></article>
  </div>
  <div class="payment-help rv"><strong>Transparent international pricing</strong>Package prices are set in USD. Local-currency values are estimates calculated from the latest available reference rates and may differ from your bank’s rate. <a href="https://open.er-api.com/" target="_blank" rel="noopener noreferrer">Exchange-rate data source</a>. To get started, choose a package and send us an enquiry.</div>
 </div></section>
@@ -343,6 +1045,19 @@ footer h4{font:600 10.5px var(--f2);letter-spacing:.14em;text-transform:uppercas
   <p class="sig">"Stay curious. Keep creating."</p>
  </div>
 </div></section>
+
+<section id="decision-help" class="decision-help">
+ <div class="wrap">
+  <div class="head rv"><div><p class="eb">Before we meet</p><h2>Clear answers. No awkward sales call.</h2></div><p>Use the first conversation to decide whether the working model fits your team. We’ll be straightforward if it isn’t the right match.</p></div>
+  <div class="faq-grid rv">
+   <details><summary>What happens in the 15-minute call?</summary><p>We’ll ask about your business, recurring creative needs and current bottlenecks, then explain whether our workflow and packages could help. You can ask questions too.</p></details>
+   <details><summary>Do I need to commit or pay to book?</summary><p>No. The call is for understanding fit and next steps. A paid engagement only begins after the scope, price and expectations are agreed.</p></details>
+   <details><summary>What if I’m not sure which package I need?</summary><p>That’s completely fine. Tell us what you need to produce and how often. We can discuss a suitable starting point without pushing you toward the largest package.</p></details>
+   <details><summary>How do you keep the work aligned with our brand?</summary><p>We start with your goals, audience and brand references, agree priorities, and use review rounds to refine work before delivery. The exact scope is confirmed before an engagement begins.</p></details>
+  </div>
+  <div class="decision-cta rv"><div><strong>Still deciding?</strong><p>Ask your questions first. We’ll help you work out the next step.</p></div><a class="btn" href="#book-call">Let’s talk for 15 minutes <span aria-hidden="true">↗</span></a></div>
+ </div>
+</section>
 
 <section id="contact"><div class="wrap two cf">
  <div>
@@ -364,7 +1079,7 @@ footer h4{font:600 10.5px var(--f2);letter-spacing:.14em;text-transform:uppercas
    <div class="fld"><label for="w">Website / LinkedIn</label><input id="w" name="Website / LinkedIn" inputmode="url"></div>
    <div class="fld w"><label for="r">What do you need help with?</label><select id="r" name="Requirement"><option value="">Select one</option><option>Creative Design</option><option>Video</option><option>Motion</option><option>3D</option><option>Content</option><option>Brand / Campaign</option><option>Ongoing Creative Support</option><option>Other</option></select></div>
    <div class="turnstile-slot" id="turnstile-slot"><div class="h-captcha" data-captcha="true"></div><p class="turnstile-help" id="turnstile-help">Complete the hCaptcha check before submitting.</p></div>
-   <div class="fld w"><label for="m">Message *</label><textarea id="m" name="Message" required></textarea><span class="err" id="e-m"></span></div>
+   <div class="fld w"><label for="m">Message *</label><textarea id="m" name="Message" placeholder="Tell us a little about your business and what you need help with…" required></textarea><span class="err" id="e-m"></span></div>
    <div class="fld w"><button class="btn" id="sb" type="submit">Send Request →</button></div>
    <p id="msg" role="alert"></p>
    <p class="analytics-consent">We use limited website analytics to understand which pages and packages are useful. Do not include confidential information in this form.</p>
@@ -378,6 +1093,12 @@ footer h4{font:600 10.5px var(--f2);letter-spacing:.14em;text-transform:uppercas
  <div class="ctas"><a class="btn" href="#audit">Request a Creative Audit →</a><a class="btn o" href="#contact">Start a Conversation</a></div>
 </div></section>
 </main>
+
+<div class="sticky-meet" id="sticky-meet" aria-label="Book a quick discovery call">
+ <div><strong>Have a creative challenge?</strong><span>Talk it through in a short call.</span></div>
+ <a class="btn" href="#book-call">Book a quick call <span aria-hidden="true">↗</span></a>
+ <button type="button" class="sticky-close" aria-label="Dismiss booking reminder">×</button>
+</div>
 
 <footer><div class="wrap">
  <div class="fg">
@@ -396,6 +1117,25 @@ mb.addEventListener('click',()=>{const o=menu.classList.toggle('open');mb.setAtt
 menu.addEventListener('click',e=>{if(e.target.closest('a')){menu.classList.remove('open');mb.setAttribute('aria-expanded',false)}});
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+// Progressive booking reminder: appears after the visitor has explored the page.
+const stickyMeet=document.querySelector('#sticky-meet');
+if(stickyMeet){
+ let dismissed=false;
+ const closeSticky=stickyMeet.querySelector('.sticky-close');
+ closeSticky.addEventListener('click',()=>{dismissed=true;stickyMeet.classList.remove('visible')});
+ const updateSticky=()=>{
+  if(dismissed)return;
+  const scrolled=window.scrollY>650;
+  const booking=document.querySelector('#book-call');
+  const contact=document.querySelector('#contact');
+  const nearDecision=[booking,contact].some(el=>{if(!el)return false;const r=el.getBoundingClientRect();return r.top<window.innerHeight*.7&&r.bottom>window.innerHeight*.25});
+  stickyMeet.classList.toggle('visible',scrolled&&!nearDecision);
+ };
+ window.addEventListener('scroll',updateSticky,{passive:true});
+ window.addEventListener('resize',updateSticky);updateSticky();
+}
+
 // ---------- Free daily exchange-rate display ----------
 const currencySelect=$('#currency'),rateStatus=$('#rate-status');
 const currencyMeta={USD:{locale:'en-US'},EUR:{locale:'de-DE'},GBP:{locale:'en-GB'},CAD:{locale:'en-CA'},AUD:{locale:'en-AU'},INR:{locale:'en-IN'},AED:{locale:'ar-AE'},SGD:{locale:'en-SG'},NZD:{locale:'en-NZ'},CHF:{locale:'de-CH'},JPY:{locale:'ja-JP'},ZAR:{locale:'en-ZA'}};
@@ -431,7 +1171,19 @@ if(/^https:\/\/calendly\.com\/(?!YOUR_CALENDLY_USERNAME)[A-Za-z0-9_.-]+\/[A-Za-z
 }
 
 // Selecting a package pre-fills the enquiry; no payment provider is connected.
-document.querySelectorAll('.plan-cta').forEach(button=>button.addEventListener('click',()=>{const plan=button.dataset.plan;$('#selected-plan').value=plan;const req=$('#r');if(req)req.value='Ongoing Creative Support';const message=$('#m');if(message&&!message.value.trim())message.value='I’m interested in the '+plan+' package. Please share the next steps.';$('#contact').scrollIntoView({behavior:'smooth'});setTimeout(()=>$('#n').focus({preventScroll:true}),450)}));
+document.querySelectorAll('.plan-cta').forEach(button=>button.addEventListener('click',()=>{
+ const plan=button.dataset.plan;
+ const hiddenPlan=$('#selected-plan'); if(hiddenPlan) hiddenPlan.value=plan;
+ const banner=$('#selected-plan-banner');
+ const title=$('#selected-plan-title');
+ const description=$('#selected-plan-description');
+ if(title) title.textContent=plan+' — let’s talk through the fit';
+ if(description) description.textContent='You’ve selected '+plan+'. We’ll discuss your business, priorities and the kind of creative support that would be most useful. There’s no obligation to proceed.';
+ if(banner) banner.hidden=false;
+ const req=$('#r'); if(req) req.value='Ongoing Creative Support';
+ const message=$('#m'); if(message){message.placeholder='I’m interested in the '+plan+' package. Please share the next steps.';}
+ const booking=$('#book-call'); if(booking) booking.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+}));
 
 // ---------- Contact form: Turnstile + server-side Resend integration ----------
 const f=$('#f'),msg=$('#msg'),sb=$('#sb');
