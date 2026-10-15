@@ -414,7 +414,7 @@ document.addEventListener('click',e=>{const link=e.target.closest('a,button');if
 let pricingTracked=false;const pricingSection=$('#engagement');if(pricingSection&&'IntersectionObserver'in window){const pricingObserver=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)&&!pricingTracked){pricingTracked=true;track('pricing_view',{currency:currencySelect.value})}},{threshold:.25});pricingObserver.observe(pricingSection)}
 
 // ---------- Calendly booking embed ----------
-const CALENDLY_URL='https://calendly.com/YOUR_CALENDLY_USERNAME/15min';
+const CALENDLY_URL='https://calendly.com/shanmugamsullia/30min';
 if(/^https:\/\/calendly\.com\/(?!YOUR_CALENDLY_USERNAME)[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+/.test(CALENDLY_URL)){
  const container=$('#calendly-container');container.innerHTML='';const iframe=document.createElement('iframe');iframe.title='Book a 15-minute discovery call';iframe.loading='lazy';iframe.src=CALENDLY_URL+'?hide_event_type_details=1&hide_gdpr_banner=1';container.appendChild(iframe);
 }
