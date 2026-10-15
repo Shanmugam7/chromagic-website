@@ -426,7 +426,7 @@ document.querySelectorAll('.plan-cta').forEach(button=>button.addEventListener('
 const f=$('#f'),msg=$('#msg'),sb=$('#sb');
 const re=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const setE=(id,t)=>{$('#e-'+id).textContent=t;return !t};
-const TURNSTILE_SITE_KEY='YOUR_CLOUDFLARE_TURNSTILE_SITE_KEY';
+const TURNSTILE_SITE_KEY='0x4AAAAAAFX0kpEj2uF-6xm4';
 let turnstileToken='';
 if(TURNSTILE_SITE_KEY!=='YOUR_CLOUDFLARE_TURNSTILE_SITE_KEY'){
  const ts=document.createElement('script');ts.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';ts.async=true;ts.defer=true;ts.onload=()=>{if(window.turnstile){window.turnstile.render('#turnstile-widget',{sitekey:TURNSTILE_SITE_KEY,callback:token=>{turnstileToken=token;$('#turnstile-help').textContent='Spam protection is active.'},'expired-callback':()=>{turnstileToken=''},'error-callback':()=>{turnstileToken=''}});$('#turnstile-help').textContent='Complete the security check if prompted.'}};document.head.appendChild(ts);
